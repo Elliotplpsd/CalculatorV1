@@ -1,4 +1,4 @@
-# stolencalculator
+# calculator
 
 A new Flutter project.
 
