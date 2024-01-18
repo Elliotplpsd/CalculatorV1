@@ -51,18 +51,19 @@ class Calculation
     a.removeLast();
 
     if(a.last.lastIndexOf( ".") == a.last.length-1)//makes a substring based on the position of the .
-    a.last = a.last.substring(0, a.length-1);// i dont fully understand this at the time of writing i wrote it following the tutorial
-
-    for( int i = 0; i < a.length; i++) 
+    a.last = a.last.substring(0, a.length-1);// splits the main string so that the upcoming code can easily calculate it
+    
+    //multiplication and division are prioritized
+    for( int i = 0; i < a.length; i++) //pemdas (pedmas?)
     {
-      if(a[i] == "x") 
+      if(a[i] == "x") //multiplication
       {
         a[i-1] = "${double.parse(a[i-1]) * double.parse(a[i+1])}";
         a.removeAt(i);
         a.removeAt(i);
         i--;
       }
-      else if(a[i] == "÷") 
+      else if(a[i] == "÷") //division
       {
         a[i-1] = "${double.parse(a[i-1]) / double.parse(a[i+1])}";
         a.removeAt(i);
@@ -71,16 +72,17 @@ class Calculation
 
       }
     }
+    //addition and substraction
     for( int i = 0; i < a.length; i++) 
     {
-      if(a[i] == "+") 
+      if(a[i] == "+") //addition
       {
         a[i-1] = "${double.parse(a[i-1]) + double.parse(a[i+1])}";
         a.removeAt(i);
         a.removeAt(i);
         i--;
       } 
-      else if(a[i] == "-") 
+      else if(a[i] == "-") //substraction
       {
         a[i-1] = "${double.parse(a[i-1]) - double.parse(a[i+1])}";
         a.removeAt(i);
@@ -88,8 +90,8 @@ class Calculation
         i--;
       }
     }
-    if(a.length != 1) throw Error();
-    return double.parse(a[0]);
+    if(a.length != 1) throw Error();//if the array storing the final value has more than 0 and 1 something broke
+    return double.parse(a[0]);//returns the result
   }
 
 
